@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Shops - Super Mall</title>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/user.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="../index.html">🏬 Super Mall</a></h1>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav" id="navMenu">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="shops.html" class="active">Shops</a></li>
+                    <li><a href="offers.html">Offers</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="floors.html">Floors</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="nav-overlay" id="navOverlay"></div>
+    </header>
+
+    <main class="container mt-4">
+        <h2>Browse All Shops</h2>
+        
+        <!-- Filters -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="filter-controls">
+                    <input type="text" id="search-input" class="form-control" placeholder="Search shops..." style="max-width: 300px;">
+                    <select id="category-filter" class="form-control" style="max-width: 200px;">
+                        <option value="">All Categories</option>
+                    </select>
+                    <select id="floor-filter" class="form-control" style="max-width: 200px;">
+                        <option value="">All Floors</option>
+                    </select>
+                    <select id="status-filter" class="form-control" style="max-width: 200px;">
+                        <option value="active">Active Only</option>
+                        <option value="">All Status</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shops Grid -->
+        <div class="grid grid-3" id="shops-container">
+            <!-- Shops will be loaded here -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Super Mall. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="loading-container" class="loading-container">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../utils/logger.js"></script>
+    <script src="../utils/constants.js"></script>
+    <script src="../utils/helpers.js"></script>
+    <script src="../assets/js/user/shops.js"></script>
+    
+    <!-- Mobile Menu Script -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navOverlay = document.getElementById('navOverlay');
+        const navLinks = navMenu.querySelectorAll('a');
+
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', toggleMenu);
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

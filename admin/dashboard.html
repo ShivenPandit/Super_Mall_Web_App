@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Super Mall</title>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>🏬 Super Mall</h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html" class="active">📊 Dashboard</a></li>
+                    <li><a href="shops.html">🏪 Manage Shops</a></li>
+                    <li><a href="offers.html">💰 Manage Offers</a></li>
+                    <li><a href="categories.html">📁 Manage Categories</a></li>
+                    <li><a href="floors.html">🏢 Manage Floors</a></li>
+                    <li><a href="#" id="logout-btn">🚪 Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1>Dashboard</h1>
+                <div class="admin-user-info">
+                    <span id="user-email"></span>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🏪</div>
+                        <div class="stat-info">
+                            <h3 id="total-shops">0</h3>
+                            <p>Total Shops</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-info">
+                            <h3 id="total-products">0</h3>
+                            <p>Total Products</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <h3 id="total-offers">0</h3>
+                            <p>Active Offers</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📁</div>
+                        <div class="stat-info">
+                            <h3 id="total-categories">0</h3>
+                            <p>Categories</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3>Recent Shops</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="recent-shops-container">
+                            <!-- Recent shops will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Offers -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3>Active Offers</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="active-offers-container">
+                            <!-- Active offers will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="loading-container" class="loading-container">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../utils/logger.js"></script>
+    <script src="../utils/constants.js"></script>
+    <script src="../utils/helpers.js"></script>
+    <script src="../assets/js/admin/auth-check.js"></script>
+    <script src="../assets/js/admin/dashboard.js"></script>
+</body>
+</html>

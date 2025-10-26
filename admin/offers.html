@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Offers - Super Mall Admin</title>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>🏬 Super Mall</h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html">📊 Dashboard</a></li>
+                    <li><a href="shops.html">🏪 Manage Shops</a></li>
+                    <li><a href="offers.html" class="active">💰 Manage Offers</a></li>
+                    <li><a href="categories.html">📁 Manage Categories</a></li>
+                    <li><a href="floors.html">🏢 Manage Floors</a></li>
+                    <li><a href="#" id="logout-btn">🚪 Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1>Manage Offers</h1>
+                <button class="btn btn-primary" id="add-offer-btn">+ Add New Offer</button>
+            </header>
+
+            <div class="admin-content">
+                <!-- Filter and Search -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="filter-controls">
+                            <input type="text" id="search-input" class="form-control" placeholder="Search offers..." style="max-width: 300px;">
+                            <select id="shop-filter" class="form-control" style="max-width: 200px;">
+                                <option value="">All Shops</option>
+                            </select>
+                            <select id="status-filter" class="form-control" style="max-width: 200px;">
+                                <option value="">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="expired">Expired</option>
+                                <option value="upcoming">Upcoming</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Offers Grid -->
+                <div class="grid grid-3" id="offers-container">
+                    <!-- Offers will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Offer Modal -->
+    <div id="offer-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Offer</h3>
+                <button class="modal-close" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-error-container" class="form-error"></div>
+                <form id="offer-form">
+                    <input type="hidden" id="offer-id">
+                    <div class="form-group">
+                        <label for="offer-title" class="form-label">Offer Title *</label>
+                        <input type="text" id="offer-title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="offer-description" class="form-label">Description *</label>
+                        <textarea id="offer-description" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="offer-shop" class="form-label">Shop *</label>
+                        <select id="offer-shop" class="form-control" required>
+                            <option value="">Select Shop</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="offer-type" class="form-label">Offer Type *</label>
+                        <select id="offer-type" class="form-control" required>
+                            <option value="percentage">Percentage Discount</option>
+                            <option value="fixed_amount">Fixed Amount</option>
+                            <option value="bogo">Buy One Get One</option>
+                            <option value="seasonal">Seasonal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="offer-discount" class="form-label">Discount Value *</label>
+                        <input type="number" id="offer-discount" class="form-control" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="offer-start-date" class="form-label">Start Date *</label>
+                        <input type="date" id="offer-start-date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="offer-end-date" class="form-label">End Date *</label>
+                        <input type="date" id="offer-end-date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Save Offer</button>
+                        <button type="button" class="btn btn-outline" id="cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-container" class="loading-container">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../utils/logger.js"></script>
+    <script src="../utils/constants.js"></script>
+    <script src="../utils/helpers.js"></script>
+    <script src="../utils/validation.js"></script>
+    <script src="../assets/js/admin/auth-check.js"></script>
+    <script src="../assets/js/admin/offers.js"></script>
+</body>
+</html>

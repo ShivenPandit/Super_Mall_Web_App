@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mall - Home</title>
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🏬 Super Mall</h1>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav" id="navMenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="user/shops.html">Shops</a></li>
+                    <li><a href="user/offers.html">Offers</a></li>
+                    <li><a href="user/categories.html">Categories</a></li>
+                    <li><a href="user/floors.html">Floors</a></li>
+                    <li><a href="admin/login.html" class="btn-admin">Admin Login</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="nav-overlay" id="navOverlay"></div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Welcome to Super Mall</h2>
+                <p>Discover amazing shops, products, and exclusive offers all in one place!</p>
+                <div class="cta-buttons">
+                    <a href="user/shops.html" class="btn btn-primary">Browse Shops</a>
+                    <a href="user/offers.html" class="btn btn-secondary">View Offers</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h3>Why Choose Super Mall?</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🏪</div>
+                        <h4>Multiple Shops</h4>
+                        <p>Browse through various shops and find what you need</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h4>Best Offers</h4>
+                        <p>Get exclusive deals and discounts on your favorite products</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h4>Compare Products</h4>
+                        <p>Compare products by cost and features easily</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🗺️</div>
+                        <h4>Floor Navigation</h4>
+                        <p>Navigate through different floors to find shops</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories-preview">
+            <div class="container">
+                <h3>Popular Categories</h3>
+                <div id="categories-container" class="categories-grid">
+                    <!-- Categories will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Super Mall. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="config/firebase-config.js"></script>
+    <script src="utils/logger.js"></script>
+    <script src="utils/constants.js"></script>
+    <script src="assets/js/home.js"></script>
+    
+    <!-- Mobile Menu Script -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const navOverlay = document.getElementById('navOverlay');
+        const navLinks = navMenu.querySelectorAll('a');
+
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', toggleMenu);
+        
+        // Close menu when clicking on a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

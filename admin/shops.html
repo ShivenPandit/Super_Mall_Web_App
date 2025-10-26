@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Shops - Super Mall Admin</title>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>🏬 Super Mall</h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html">📊 Dashboard</a></li>
+                    <li><a href="shops.html" class="active">🏪 Manage Shops</a></li>
+                    <li><a href="offers.html">💰 Manage Offers</a></li>
+                    <li><a href="categories.html">📁 Manage Categories</a></li>
+                    <li><a href="floors.html">🏢 Manage Floors</a></li>
+                    <li><a href="#" id="logout-btn">🚪 Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1>Manage Shops</h1>
+                <button class="btn btn-primary" id="add-shop-btn">+ Add New Shop</button>
+            </header>
+
+            <div class="admin-content">
+                <!-- Filter and Search -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="filter-controls">
+                            <input type="text" id="search-input" class="form-control" placeholder="Search shops..." style="max-width: 300px;">
+                            <select id="category-filter" class="form-control" style="max-width: 200px;">
+                                <option value="">All Categories</option>
+                            </select>
+                            <select id="floor-filter" class="form-control" style="max-width: 200px;">
+                                <option value="">All Floors</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shops Table -->
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table" id="shops-table">
+                            <thead>
+                                <tr>
+                                    <th>Shop Name</th>
+                                    <th>Category</th>
+                                    <th>Floor</th>
+                                    <th>Contact</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="shops-tbody">
+                                <!-- Shops will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Shop Modal -->
+    <div id="shop-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Shop</h3>
+                <button class="modal-close" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-error-container" class="form-error"></div>
+                <form id="shop-form">
+                    <input type="hidden" id="shop-id">
+                    <div class="form-group">
+                        <label for="shop-name" class="form-label">Shop Name *</label>
+                        <input type="text" id="shop-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shop-description" class="form-label">Description *</label>
+                        <textarea id="shop-description" class="form-control" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="shop-category" class="form-label">Category *</label>
+                        <select id="shop-category" class="form-control" required>
+                            <option value="">Select Category</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="shop-floor" class="form-label">Floor *</label>
+                        <select id="shop-floor" class="form-control" required>
+                            <option value="">Select Floor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="shop-contact" class="form-label">Contact *</label>
+                        <input type="text" id="shop-contact" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shop-email" class="form-label">Email</label>
+                        <input type="email" id="shop-email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="shop-status" class="form-label">Status *</label>
+                        <select id="shop-status" class="form-control" required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Save Shop</button>
+                        <button type="button" class="btn btn-outline" id="cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-container" class="loading-container">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../utils/logger.js"></script>
+    <script src="../utils/constants.js"></script>
+    <script src="../utils/helpers.js"></script>
+    <script src="../utils/validation.js"></script>
+    <script src="../assets/js/admin/auth-check.js"></script>
+    <script src="../assets/js/admin/shops.js"></script>
+</body>
+</html>

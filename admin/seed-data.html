@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Database - Super Mall Admin</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Super Mall Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="shops.html">
+                    <span class="icon">🏪</span>
+                    <span>Shops</span>
+                </a>
+                <a href="offers.html">
+                    <span class="icon">🏷️</span>
+                    <span>Offers</span>
+                </a>
+                <a href="categories.html">
+                    <span class="icon">📂</span>
+                    <span>Categories</span>
+                </a>
+                <a href="floors.html">
+                    <span class="icon">🏢</span>
+                    <span>Floors</span>
+                </a>
+                <a href="seed-data.html" class="active">
+                    <span class="icon">🌱</span>
+                    <span>Seed Data</span>
+                </a>
+                <a href="#" id="logoutBtn">
+                    <span class="icon">🚪</span>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Database Seeding</h1>
+                <p class="subtitle">Add sample data to your Super Mall database</p>
+            </header>
+
+            <div class="content-wrapper">
+                <!-- Info Card -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>About Database Seeding</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>This utility helps you populate your database with sample data for testing and demonstration purposes.</p>
+                        
+                        <div class="alert alert-info mt-3">
+                            <strong>What will be added:</strong>
+                            <ul class="mt-2">
+                                <li>✓ <strong>8 Categories:</strong> Fashion, Electronics, Food & Beverages, Beauty, Home, Sports, Books, Entertainment</li>
+                                <li>✓ <strong>4 Floors:</strong> Ground Floor to Third Floor</li>
+                                <li>✓ <strong>10 Shops:</strong> Including TechZone, Samsung, Zara, Nike, Starbucks, IKEA, Sephora, and more</li>
+                                <li>✓ <strong>30+ Products:</strong> Real products with prices and descriptions</li>
+                                <li>✓ <strong>8 Active Offers:</strong> Various discounts and promotional deals</li>
+                            </ul>
+                        </div>
+
+                        <div class="alert alert-warning mt-3">
+                            <strong>⚠️ Important Notes:</strong>
+                            <ul class="mt-2">
+                                <li>Make sure Firebase is properly configured in <code>config/firebase-config.js</code></li>
+                                <li>Seeding will add new data. It won't delete existing data unless you use "Clear Database"</li>
+                                <li>If items with the same ID exist, they will be overwritten</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Data Preview -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Sample Data Preview</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                            <div class="stat-card">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Categories</div>
+                                <div class="stat-icon">📂</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">4</div>
+                                <div class="stat-label">Floors</div>
+                                <div class="stat-icon">🏢</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">10</div>
+                                <div class="stat-label">Shops</div>
+                                <div class="stat-icon">🏪</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">30+</div>
+                                <div class="stat-label">Products</div>
+                                <div class="stat-icon">📦</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Offers</div>
+                                <div class="stat-icon">🏷️</div>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-4 mb-3">Featured Shops</h4>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Shop Name</th>
+                                        <th>Category</th>
+                                        <th>Floor</th>
+                                        <th>Products</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>TechZone Electronics</td>
+                                        <td>Electronics</td>
+                                        <td>Ground Floor</td>
+                                        <td>3 (iPhone, MacBook, AirPods)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Samsung Experience Store</td>
+                                        <td>Electronics</td>
+                                        <td>Ground Floor</td>
+                                        <td>3 (Galaxy S24, QLED TV, Buds)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zara Fashion</td>
+                                        <td>Fashion & Apparel</td>
+                                        <td>First Floor</td>
+                                        <td>3 (Blazer, Dress, Handbag)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nike Store</td>
+                                        <td>Fashion & Apparel</td>
+                                        <td>First Floor</td>
+                                        <td>3 (Air Jordan, Running Shirt, Hoodie)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Starbucks Coffee</td>
+                                        <td>Food & Beverages</td>
+                                        <td>Ground Floor</td>
+                                        <td>3 (Macchiato, Croissant, Cold Brew)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sephora Beauty</td>
+                                        <td>Beauty & Cosmetics</td>
+                                        <td>First Floor</td>
+                                        <td>3 (Dior Parfum, Foundation, La Mer)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Actions</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="button-group">
+                            <button onclick="seedDatabase()" class="btn btn-primary btn-lg">
+                                🌱 Seed Database with Sample Data
+                            </button>
+                            <button onclick="clearDatabase()" class="btn btn-danger btn-lg">
+                                🗑️ Clear All Database Data
+                            </button>
+                        </div>
+
+                        <div id="statusMessage" class="mt-4" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <!-- Console Output -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3>Console Output</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="consoleOutput" style="background-color: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9rem; max-height: 400px; overflow-y: auto;">
+                            <div style="color: #4ec9b0;">Waiting for action...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="../utils/logger.js"></script>
+    <script src="../utils/constants.js"></script>
+    <script src="../utils/helpers.js"></script>
+    <script src="../config/firebase-config.js"></script>
+    <script src="../utils/seed-data.js"></script>
+    <script>
+        // Override console.log to show in page
+        const consoleOutput = document.getElementById('consoleOutput');
+        const originalLog = console.log;
+        const originalError = console.error;
+
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg, null, 2) : arg).join(' ');
+            const logLine = document.createElement('div');
+            logLine.style.color = '#4ec9b0';
+            logLine.style.marginBottom = '0.5rem';
+            logLine.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            consoleOutput.appendChild(logLine);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg, null, 2) : arg).join(' ');
+            const errorLine = document.createElement('div');
+            errorLine.style.color = '#f48771';
+            errorLine.style.marginBottom = '0.5rem';
+            errorLine.textContent = `[${new Date().toLocaleTimeString()}] ERROR: ${message}`;
+            consoleOutput.appendChild(errorLine);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        // Logout functionality
+        document.getElementById('logoutBtn')?.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try {
+                await FirebaseService.signOut();
+                window.location.href = 'login.html';
+            } catch (error) {
+                console.error('Logout error:', error);
+                showToast('Logout failed!', 'error');
+            }
+        });
+
+        // Check authentication
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('Seed Data page loaded successfully');
+            console.log('Firebase status: ' + (firebase.apps.length > 0 ? 'Connected' : 'Not connected'));
+        });
+    </script>
+</body>
+</html>

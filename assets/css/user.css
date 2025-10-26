@@ -1,0 +1,310 @@
+/* User Interface Styles */
+
+/* Shop Cards */
+.shop-card {
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.shop-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.shop-card-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.shop-card-header h3 {
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.shop-card-body {
+    padding: 1.5rem;
+}
+
+.shop-card-body p {
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.shop-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.shop-info-item strong {
+    min-width: 80px;
+    color: var(--text-primary);
+}
+
+.shop-card-footer {
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .shop-card:hover {
+        transform: translateY(-2px);
+    }
+    
+    .shop-card-header {
+        padding: 1.25rem 1rem;
+    }
+    
+    .shop-card-body {
+        padding: 1.25rem 1rem;
+    }
+    
+    .shop-card-footer {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .shop-card-footer .btn {
+        width: 100%;
+    }
+}
+
+/* Offer Cards for User */
+.user-offer-card {
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.user-offer-card:hover {
+    border-color: var(--danger-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.offer-ribbon {
+    background-color: var(--danger-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.user-offer-body {
+    padding: 1.5rem;
+}
+
+.user-offer-body h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+.user-offer-body p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.offer-shop-name {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .user-offer-card:hover {
+        transform: none;
+    }
+    
+    .offer-ribbon {
+        font-size: 1.125rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .user-offer-body {
+        padding: 1.25rem 1rem;
+    }
+    
+    .user-offer-body h4 {
+        font-size: 1.25rem;
+    }
+}
+
+.offer-validity {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--text-light);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Category Cards for User */
+.user-category-card {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+}
+
+.user-category-card:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
+}
+
+.category-icon-huge {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.user-category-card h3 {
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.user-category-card p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.shop-count {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Floor Cards for User */
+.user-floor-card {
+    background-color: var(--bg-primary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    transition: var(--transition);
+    cursor: pointer;
+    border-left: 5px solid var(--primary-color);
+}
+
+.user-floor-card:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.floor-level-display {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.floor-name-display {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.floor-description-display {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.floor-shop-count {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    margin-bottom: 0.5rem;
+}
+
+/* Filter Badge */
+.filter-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    margin: 0.5rem;
+}
+
+.filter-badge button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Results Count */
+.results-count {
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Loading State */
+.loading-state {
+    text-align: center;
+    padding: 3rem;
+}
+
+.loading-state .spinner {
+    margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .shop-card-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .filter-controls {
+        flex-direction: column;
+    }
+    
+    .filter-controls .form-control {
+        max-width: 100% !important;
+    }
+}

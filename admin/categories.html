@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Categories - Super Mall Admin</title>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>🏬 Super Mall</h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html">📊 Dashboard</a></li>
+                    <li><a href="shops.html">🏪 Manage Shops</a></li>
+                    <li><a href="offers.html">💰 Manage Offers</a></li>
+                    <li><a href="categories.html" class="active">📁 Manage Categories</a></li>
+                    <li><a href="floors.html">🏢 Manage Floors</a></li>
+                    <li><a href="#" id="logout-btn">🚪 Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1>Manage Categories</h1>
+                <button class="btn btn-primary" id="add-category-btn">+ Add New Category</button>
+            </header>
+
+            <div class="admin-content">
+                <div class="grid grid-3" id="categories-container">
+                    <!-- Categories will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Category Modal -->
+    <div id="category-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Category</h3>
+                <button class="modal-close" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-error-container" class="form-error"></div>
+                <form id="category-form">
+                    <input type="hidden" id="category-id">
+                    <div class="form-group">
+                        <label for="category-name" class="form-label">Category Name *</label>
+                        <input type="text" id="category-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category-description" class="form-label">Description</label>
+                        <textarea id="category-description" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="category-icon" class="form-label">Icon (Emoji)</label>
+                        <input type="text" id="category-icon" class="form-control" placeholder="📦">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Save Category</button>
+                        <button type="button" class="btn btn-outline" id="cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-container" class="loading-container">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="../config/firebase-config.js"></script>
+    <script src="../utils/logger.js"></script>
+    <script src="../utils/constants.js"></script>
+    <script src="../utils/helpers.js"></script>
+    <script src="../utils/validation.js"></script>
+    <script src="../assets/js/admin/auth-check.js"></script>
+    <script src="../assets/js/admin/categories.js"></script>
+</body>
+</html>
